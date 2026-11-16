@@ -121,10 +121,10 @@
     <h1>Rocket Arena 3D</h1>
     <p class="subtitle">Físicas de Doble Salto • Repeticiones • Garaje • 5 Niveles IA • Multijugador</p>
     <div class="menu-grid">
-      <button class="primary" onclick="showScreen('menu-play')">Jugar Partido</button>
-      <button onclick="showScreen('menu-garage')">Garaje y Personalización</button>
-      <button class="orange" onclick="showScreen('menu-multi')">Jugar con Amigos</button>
-      <button onclick="showScreen('menu-controls')">Configurar Controles</button>
+      <button class="primary" id="btn-open-play">Jugar Partido</button>
+      <button id="btn-open-garage">Garaje y Personalización</button>
+      <button class="orange" id="btn-open-multi">Jugar con Amigos</button>
+      <button id="btn-open-controls">Configurar Controles</button>
     </div>
   </div>
 
@@ -151,8 +151,8 @@
         </select>
       </div>
       <div class="row" style="margin-top:20px;">
-        <button onclick="showScreen('menu-main')">Volver</button>
-        <button class="primary" onclick="startMatch('ai')">¡Comenzar Partido!</button>
+        <button id="btn-back-play">Volver</button>
+        <button class="primary" id="btn-start-ai">¡Comenzar Partido!</button>
       </div>
     </div>
   </div>
@@ -199,7 +199,7 @@
         </select>
       </div>
       <div class="row" style="margin-top:20px;">
-        <button class="primary" onclick="saveGarage()">Guardar y Volver</button>
+        <button class="primary" id="btn-save-garage">Guardar y Volver</button>
       </div>
     </div>
   </div>
@@ -213,9 +213,11 @@
           <strong>Modo 1: Mismo Ordenador (Pantalla Dividida)</strong><br>
           <small style="color:#8fa3bf">J1: WASD + Espacio/Shift | J2: Flechas + Enter/Ctrl</small>
         </div>
-        <button class="primary small" onclick="startMatch('split')">Jugar Local 2P</button>
+        <button class="primary small" id="btn-start-split">Jugar Local 2P</button>
       </div>
       <hr style="border-color:#243554; margin:15px 0;">
       <div>
         <strong>Modo 2: Online Directo (P2P sin servidor)</strong>
         <p style="font-size:0.85rem; color:#8fa3bf; margin:6px 0 12px;">
+          1. El anfitrión pulsa "Crear Sala" y envía el código al amigo.<br>
+          2. El amigo pega el código, pulsa "Unirse" y devuelve su código de respuesta.
