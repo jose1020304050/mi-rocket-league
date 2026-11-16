@@ -8,8 +8,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; user-select: none; }
     body { overflow: hidden; background: #0a0e17; color: #fff; }
     canvas { display: block; }
-
-    /* UI GENERAL */
     .screen {
       position: absolute; inset: 0; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
@@ -21,11 +19,9 @@
       font-size: 3.4rem; letter-spacing: 3px; text-transform: uppercase;
       background: linear-gradient(90deg, #00d2ff, #ff7b00);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 10px; text-shadow: 0 4px 20px rgba(0,210,255,0.2);
+      margin-bottom: 10px;
     }
     .subtitle { color: #8fa3bf; margin-bottom: 30px; font-size: 1.05rem; }
-
-    /* BOTONES */
     .menu-grid { display: flex; flex-direction: column; gap: 12px; width: 320px; }
     button {
       padding: 14px 20px; font-size: 1rem; font-weight: 700; text-transform: uppercase;
@@ -37,8 +33,6 @@
     button.primary { background: linear-gradient(135deg, #0077ff, #0051cc); border-left-color: #00f0ff; }
     button.orange { border-left-color: #ff7b00; }
     button.small { padding: 8px 14px; font-size: 0.85rem; }
-
-    /* PANELES */
     .panel {
       background: rgba(15, 23, 40, 0.95); border: 1px solid #2b3f66;
       border-radius: 12px; padding: 28px; width: 90%; max-width: 680px;
@@ -46,15 +40,13 @@
     }
     .panel h2 { margin-bottom: 18px; color: #00d2ff; border-bottom: 1px solid #243554; padding-bottom: 10px; }
     .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; }
-    select, input[type="text"], textarea {
+    select, input[type="text"] {
       background: #0d1424; color: #fff; border: 1px solid #324a78;
       padding: 10px; border-radius: 6px; font-size: 0.95rem; width: 55%;
     }
     .color-dots { display: flex; gap: 10px; }
     .dot { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
     .dot.active { border-color: #fff; transform: scale(1.15); }
-
-    /* HUD EN PARTIDA */
     #hud { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
     #scoreboard {
       position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
@@ -65,16 +57,14 @@
     .blue-bg { background: linear-gradient(135deg, #0055cc, #0088ff); }
     .orange-bg { background: linear-gradient(135deg, #cc4400, #ff7700); }
     #timer { padding: 10px 20px; font-size: 1.4rem; font-weight: 700; min-width: 90px; text-align: center; }
-
     #boost-meter {
       position: absolute; bottom: 25px; right: 25px; width: 130px; height: 130px;
       border-radius: 50%; background: rgba(10, 15, 28, 0.85);
       border: 5px solid #ff7b00; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(255,123,0,0.4);
+      align-items: center; justify-content: center;
     }
     #boost-val { font-size: 2.2rem; font-weight: 900; color: #ff9d00; }
     #boost-lbl { font-size: 0.75rem; letter-spacing: 2px; color: #aaa; }
-
     #cam-indicator {
       position: absolute; bottom: 25px; left: 25px; background: rgba(0,0,0,0.65);
       padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; border-left: 3px solid #00d2ff;
@@ -88,8 +78,6 @@
       position: absolute; top: 15px; right: 20px; pointer-events: auto;
       padding: 8px 14px; font-size: 0.85rem;
     }
-
-    /* OVERLAY DE REPETICIÓN DE GOL */
     #replay-overlay {
       position: absolute; inset: 0; pointer-events: none;
       border: 6px solid rgba(255, 59, 48, 0.55);
@@ -100,12 +88,8 @@
       background: rgba(180, 20, 20, 0.9); color: #fff;
       padding: 8px 22px; border-radius: 20px; font-weight: 800;
       letter-spacing: 2px; font-size: 1rem; display: flex; align-items: center; gap: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
-    .rec-dot {
-      width: 12px; height: 12px; border-radius: 50%; background: #fff;
-      animation: blink 0.8s infinite alternate;
-    }
+    .rec-dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; animation: blink 0.8s infinite alternate; }
     @keyframes blink { from { opacity: 1; } to { opacity: 0.2; } }
     #replay-skip {
       position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
@@ -115,8 +99,6 @@
   </style>
 </head>
 <body>
-
-  <!-- MENÚ PRINCIPAL -->
   <div id="menu-main" class="screen">
     <h1>Rocket Arena 3D</h1>
     <p class="subtitle">Físicas de Doble Salto • Repeticiones • Garaje • 5 Niveles IA • Multijugador</p>
@@ -128,7 +110,6 @@
     </div>
   </div>
 
-  <!-- SELECCIÓN DE MODO / DIFICULTAD -->
   <div id="menu-play" class="screen hidden">
     <div class="panel">
       <h2>Configurar Partido 1v1 contra IA</h2>
@@ -157,7 +138,6 @@
     </div>
   </div>
 
-  <!-- GARAJE -->
   <div id="menu-garage" class="screen hidden">
     <div class="panel">
       <h2>Garaje de Personalización</h2>
@@ -204,7 +184,6 @@
     </div>
   </div>
 
-  <!-- MULTIJUGADOR CON AMIGOS -->
   <div id="menu-multi" class="screen hidden">
     <div class="panel">
       <h2>Jugar con Amigos</h2>
@@ -221,3 +200,217 @@
         <p style="font-size:0.85rem; color:#8fa3bf; margin:6px 0 12px;">
           1. El anfitrión pulsa "Crear Sala" y envía el código al amigo.<br>
           2. El amigo pega el código, pulsa "Unirse" y devuelve su código de respuesta.
+        </p>
+        <div class="row">
+          <button class="small" id="btn-host-room">1. Crear Sala (Host)</button>
+          <button class="small orange" id="btn-join-room">2. Unirse a Sala (Invitado)</button>
+        </div>
+        <input type="text" id="webrtc-code" style="width:100%; margin-top:8px; font-size:0.8rem;" placeholder="Aquí aparecerá el código de conexión para copiar y pegar...">
+---
+
+### Paso 2: Pulsa Enter al final de la Parte 1 y pega esta PARTE 2
+
+Sin borrar lo anterior, haz clic al final del todo de lo que acabas de pegar en GitHub, pulsa **Enter** para hacer un salto de línea, pulsa el botón **Copiar** de este segundo cuadro y pégalo (`Ctrl + V`):
+
+```javascript
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+      if (id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('btn-open-play').onclick = () => showScreen('menu-play');
+    document.getElementById('btn-open-garage').onclick = () => showScreen('menu-garage');
+    document.getElementById('btn-open-multi').onclick = () => showScreen('menu-multi');
+    document.getElementById('btn-open-controls').onclick = () => showScreen('menu-controls');
+    document.getElementById('btn-back-play').onclick = () => showScreen('menu-main');
+    document.getElementById('btn-back-multi').onclick = () => showScreen('menu-main');
+    document.getElementById('btn-back-ctrl').onclick = () => showScreen('menu-main');
+
+    const keys = {};
+    const defaultControls = {
+      forward: 'KeyW', backward: 'KeyS', left: 'KeyA', right: 'KeyD',
+      jump: 'Space', boost: 'ShiftLeft', ballCam: 'KeyC'
+    };
+    const controlLabels = {
+      forward: 'Acelerar', backward: 'Frenar / Marcha Atrás',
+      left: 'Girar Izquierda / Dodge Izq', right: 'Girar Derecha / Dodge Der',
+      jump: 'Saltar / Doble Salto (Flip)', boost: 'Activar Turbo',
+      ballCam: 'Alternar Cámara Balón'
+    };
+
+    let controls = { ...defaultControls };
+    try { const sc = localStorage.getItem('rl_controls'); if (sc) controls = JSON.parse(sc); } catch (e) {}
+    let garage = { car: 'octane', color: '#0088ff', boost: 'fire', hat: 'none' };
+    try { const sg = localStorage.getItem('rl_garage'); if (sg) garage = JSON.parse(sg); } catch (e) {}
+
+    document.querySelectorAll('#car-colors .dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        document.querySelectorAll('#car-colors .dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        garage.color = dot.dataset.col;
+      });
+    });
+
+    document.getElementById('btn-save-garage').onclick = () => {
+      garage.car = document.getElementById('cfg-car').value;
+      garage.boost = document.getElementById('cfg-boost').value;
+      garage.hat = document.getElementById('cfg-hat').value;
+      try { localStorage.setItem('rl_garage', JSON.stringify(garage)); } catch (e) {}
+      showScreen('menu-main');
+    };
+
+    function renderControlsUI() {
+      const container = document.getElementById('controls-list');
+      container.innerHTML = '';
+      for (const key in controlLabels) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = '<span>' + controlLabels[key] + '</span><button class="small" id="btn-' + key + '">' + controls[key] + '</button>';
+        container.appendChild(row);
+        row.querySelector('button').onclick = () => listenKey(key);
+      }
+    }
+
+    function listenKey(action) {
+      const btn = document.getElementById('btn-' + action);
+      btn.innerText = 'Pulsa una tecla...';
+      const handler = (e) => {
+        e.preventDefault();
+        controls[action] = e.code;
+        try { localStorage.setItem('rl_controls', JSON.stringify(controls)); } catch (e) {}
+        window.removeEventListener('keydown', handler);
+        renderControlsUI();
+      };
+      window.addEventListener('keydown', handler);
+    }
+
+    document.getElementById('btn-reset-ctrl').onclick = () => {
+      controls = { ...defaultControls };
+      try { localStorage.setItem('rl_controls', JSON.stringify(controls)); } catch (e) {}
+      renderControlsUI();
+    };
+    renderControlsUI();
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x09111e);
+    scene.fog = new THREE.FogExp2(0x09111e, 0.0022);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const camera1 = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera2 = new THREE.PerspectiveCamera(62, (window.innerWidth / 2) / window.innerHeight, 0.1, 1000);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+    const sun = new THREE.DirectionalLight(0xffffff, 0.9);
+    sun.position.set(60, 140, 40);
+    scene.add(sun);
+
+    const FIELD_W = 110, FIELD_L = 170, GOAL_W = 28, GOAL_H = 11, WALL_H = 26;
+
+    const grassCanvas = document.createElement('canvas');
+    grassCanvas.width = 512; grassCanvas.height = 512;
+    const gCtx = grassCanvas.getContext('2d');
+    gCtx.fillStyle = '#1b5e20'; gCtx.fillRect(0, 0, 512, 512);
+    gCtx.fillStyle = '#236b28';
+    for (let i = 0; i < 8; i += 2) gCtx.fillRect(0, i * 64, 512, 64);
+    gCtx.strokeStyle = 'rgba(255,255,255,0.5)'; gCtx.lineWidth = 6;
+    gCtx.strokeRect(10, 10, 492, 492);
+    gCtx.beginPath(); gCtx.moveTo(0, 256); gCtx.lineTo(512, 256); gCtx.stroke();
+    gCtx.beginPath(); gCtx.arc(256, 256, 65, 0, Math.PI * 2); gCtx.stroke();
+
+    const field = new THREE.Mesh(
+      new THREE.PlaneGeometry(FIELD_W, FIELD_L),
+      new THREE.MeshStandardMaterial({ map: new THREE.CanvasTexture(grassCanvas), roughness: 0.8 })
+    );
+    field.rotation.x = -Math.PI / 2;
+    scene.add(field);
+
+    const wallMat = new THREE.MeshPhysicalMaterial({
+      color: 0x1a3a6c, transparent: true, opacity: 0.22, roughness: 0.1, side: THREE.DoubleSide
+    });
+    const sideWallGeo = new THREE.PlaneGeometry(FIELD_L, WALL_H);
+    const wallL = new THREE.Mesh(sideWallGeo, wallMat);
+    wallL.position.set(-FIELD_W / 2, WALL_H / 2, 0); wallL.rotation.y = Math.PI / 2;
+    const wallR = new THREE.Mesh(sideWallGeo, wallMat);
+    wallR.position.set(FIELD_W / 2, WALL_H / 2, 0); wallR.rotation.y = -Math.PI / 2;
+    scene.add(wallL, wallR);
+
+    function createGoal(zPos, colorHex) {
+      const gGroup = new THREE.Group();
+      const postMat = new THREE.MeshStandardMaterial({ color: colorHex, emissive: colorHex, emissiveIntensity: 0.5 });
+      const topBar = new THREE.Mesh(new THREE.BoxGeometry(GOAL_W, 0.8, 0.8), postMat);
+      topBar.position.set(0, GOAL_H, 0);
+      const postL = new THREE.Mesh(new THREE.BoxGeometry(0.8, GOAL_H, 0.8), postMat);
+      postL.position.set(-GOAL_W / 2, GOAL_H / 2, 0);
+      const postR = new THREE.Mesh(new THREE.BoxGeometry(0.8, GOAL_H, 0.8), postMat);
+      postR.position.set(GOAL_W / 2, GOAL_H / 2, 0);
+      const net = new THREE.Mesh(
+        new THREE.BoxGeometry(GOAL_W, GOAL_H, 10),
+        new THREE.MeshBasicMaterial({ color: colorHex, wireframe: true, transparent: true, opacity: 0.35 })
+      );
+      net.position.set(0, GOAL_H / 2, zPos > 0 ? 5 : -5);
+      gGroup.add(topBar, postL, postR, net);
+      gGroup.position.z = zPos;
+      scene.add(gGroup);
+    }
+    createGoal(FIELD_L / 2, 0x0088ff);
+    createGoal(-FIELD_L / 2, 0xff6600);
+
+    function buildCarMesh(type, colorHex, hatType) {
+      const visual = new THREE.Group();
+      const paintMat = new THREE.MeshStandardMaterial({ color: colorHex, metalness: 0.65, roughness: 0.25 });
+      const darkMat = new THREE.MeshStandardMaterial({ color: 0x151821, roughness: 0.6 });
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x88ccff, metalness: 0.9, roughness: 0.1 });
+
+      const chassis = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.55, 4.8), darkMat);
+      chassis.position.y = 0.55;
+      visual.add(chassis);
+
+      if (type === 'dominus') {
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.7, 0.55, 5.0), paintMat);
+        body.position.y = 0.95;
+        const cabin = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.55, 2.1), glassMat);
+        cabin.position.set(0, 1.35, 0.2);
+        visual.add(body, cabin);
+      } else if (type === 'fennec') {
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.65, 0.85, 4.5), paintMat);
+        body.position.y = 1.05;
+        const cabin = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.7, 2.4), glassMat);
+        cabin.position.set(0, 1.6, 0.1);
+        visual.add(body, cabin);
+      } else {
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.7, 4.6), paintMat);
+        body.position.y = 0.95;
+        const nose = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.45, 1.6), paintMat);
+        nose.position.set(0, 0.85, -2.3); nose.rotation.x = 0.15;
+        const cabin = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.65, 2.0), glassMat);
+        cabin.position.set(0, 1.5, 0.15);
+        visual.add(body, nose, cabin);
+      }
+
+      const wing = new THREE.Mesh(new THREE.BoxGeometry(2.7, 0.15, 0.65), paintMat);
+      wing.position.set(0, 1.75, 2.15);
+      const strutL = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.5, 0.3), darkMat);
+      strutL.position.set(-0.8, 1.45, 2.15);
+      const strutR = strutL.clone(); strutR.position.x = 0.8;
+      visual.add(wing, strutL, strutR);
+
+      const headLightMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const hlL = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.2, 0.1), headLightMat);
+      hlL.position.set(-0.85, 0.9, -2.42);
+      const hlR = hlL.clone(); hlR.position.x = 0.85;
+      const exhaust = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.28, 0.5, 12), darkMat);
+      exhaust.rotation.x = Math.PI / 2; exhaust.position.set(0, 0.75, 2.5);
+      visual.add(hlL, hlR, exhaust);
+
+      const wheels = [];
+      const wheelGeo = new THREE.CylinderGeometry(0.62, 0.62, 0.52, 20);
+      wheelGeo.rotateZ(Math.PI / 2);
+      const rimGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.54, 12);
+      rimGeo.rotateZ(Math.PI / 2);
+      const rimMat = new THREE.MeshStandardMaterial({ color: 0xcccccc, metalness: 0.8 });
